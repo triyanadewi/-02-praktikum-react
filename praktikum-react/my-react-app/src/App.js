@@ -73,26 +73,28 @@ function TodoList() {
   };
 
   const handleDeleteTask = (index) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTasks(updatedTasks);
+    const newTasks = [...tasks];
+    newTasks.splice(index, 1);
+    setTasks(newTasks);
   };
 
   return (
     <div>
       <h1>Todo List</h1>
-      <form onSubmit={handleAddTask}>
+      <form>
         <input 
           type="text" 
           placeholder="Tambah tugas baru" 
           value={newTask} 
           onChange={(e) => setNewTask(e.target.value)}
         />
-        <button type="submit">Tambah</button>
+        <button onClick={handleAddTask}>Tambah</button>
       </form>
       {tasks.length > 0 && (
         <table style={{ width: "auto", borderCollapse: "collapse", marginTop: "20px" }}>
           <thead>
             <tr>
+              <th style={{ border: "1px solid black", padding: "8px" }}>No.</th>
               <th style={{ border: "1px solid black", padding: "8px" }}>Tugas</th>
               <th style={{ border: "1px solid black", padding: "8px" }}>Aksi</th>
             </tr>
@@ -100,6 +102,7 @@ function TodoList() {
           <tbody>
             {tasks.map((task, index) => (
               <tr key={index}>
+                <td style={{ border: "1px solid black", padding: "8px" }}>{index+1}</td>
                 <td style={{ border: "1px solid black", padding: "8px" }}>{task}</td>
                 <td style={{ border: "1px solid black", padding: "8px" }}>
                   <button onClick={() => handleDeleteTask(index)}>Hapus</button>
@@ -107,9 +110,9 @@ function TodoList() {
               </tr>
             ))}
           </tbody>
-          </table> 
+        </table> 
       )}   
-      </div>
+    </div>
   );
 }
 
