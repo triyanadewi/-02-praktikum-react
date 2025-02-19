@@ -81,3 +81,11 @@ Aplikasi akan terbuka di browser pada alamat http://localhost:3000. <br>
 ![Hasil Menggunakan State](praktikum-react/my-react-app/img/prak5-hasil.gif)
 
 ---
+
+## Tugas
+1. Buat komponen baru bernama TodoList yang menampilkan daftar tugas (todo list). Gunakan state untuk mengelola daftar tugas dan props untuk mengirim data tugas ke komponen anak. 
+2. Tambahkan fitur untuk menambahkan tugas baru ke dalam daftar menggunakan form input. 
+3. Implementasikan fitur untuk menghapus tugas dari daftar.
+
+### Hasil Pengerjaan Tugas
+![Hasil Tugas](praktikum-react/my-react-app/img/hasil-tugas.gif)

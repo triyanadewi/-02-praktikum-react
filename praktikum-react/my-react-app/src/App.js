@@ -59,7 +59,61 @@ function Footer() {
   ); 
 }
 
-// Komponen App yang menggunakan Header, Main, dan Footer (tambah Counter, Greeting, Example)
+// Komponen Todo List (TUGAS)
+function TodoList() {
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
+
+  const handleAddTask = (e) => {
+    e.preventDefault();
+    if (newTask.trim() !== '') {
+      setTasks([...tasks, newTask]);
+      setNewTask('');
+    }
+  };
+
+  const handleDeleteTask = (index) => {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  };
+
+  return (
+    <div>
+      <h1>Todo List</h1>
+      <form onSubmit={handleAddTask}>
+        <input 
+          type="text" 
+          placeholder="Tambah tugas baru" 
+          value={newTask} 
+          onChange={(e) => setNewTask(e.target.value)}
+        />
+        <button type="submit">Tambah</button>
+      </form>
+      {tasks.length > 0 && (
+        <table style={{ width: "auto", borderCollapse: "collapse", marginTop: "20px" }}>
+          <thead>
+            <tr>
+              <th style={{ border: "1px solid black", padding: "8px" }}>Tugas</th>
+              <th style={{ border: "1px solid black", padding: "8px" }}>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tasks.map((task, index) => (
+              <tr key={index}>
+                <td style={{ border: "1px solid black", padding: "8px" }}>{task}</td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  <button onClick={() => handleDeleteTask(index)}>Hapus</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          </table> 
+      )}   
+      </div>
+  );
+}
+
+// Komponen App yang menggunakan Header, Main, dan Footer (tambah Counter, Greeting, Example, TodoList)
 function App() { 
   return ( 
     <div> 
@@ -68,6 +122,8 @@ function App() {
       <Greeting name="Triyana" />
       <Counter />
       <Example />
+      <hr />
+      <TodoList />
       <Footer /> 
     </div> 
   ); 
